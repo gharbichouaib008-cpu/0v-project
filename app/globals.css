@@ -1,0 +1,381 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Purple palette extracted from video */
+  --purple-deep: #1a1033;
+  --purple-mid: #2d1f5e;
+  --purple-light: #6b5b95;
+  --purple-glow: #a78bfa;
+  --cyan-glow: #22d3ee;
+  --cyan-bright: #06b6d4;
+
+  --background: #fdfdfd;
+  --foreground: #000000;
+  --card: #fdfdfd;
+  --card-foreground: #000000;
+  --popover: #fcfcfc;
+  --popover-foreground: #000000;
+  --primary: #7033ff;
+  --primary-foreground: #ffffff;
+  --secondary: #edf0f4;
+  --secondary-foreground: #080808;
+  --muted: #f5f5f5;
+  --muted-foreground: #525252;
+  --accent: #e2ebff;
+  --accent-foreground: #1e69dc;
+  --destructive: #e54b4f;
+  --destructive-foreground: #ffffff;
+  --border: #e7e7ee;
+  --input: #ebebeb;
+  --ring: #000000;
+  --radius: 1.4rem;
+
+  /* Gaming accent colors */
+  --gold: #fbbf24;
+  --silver: #94a3b8;
+  --bronze: #d97706;
+  --chart-1: #4ac885;
+  --chart-2: #7033ff;
+  --chart-3: #fd822b;
+  --chart-4: #3276e4;
+  --chart-5: #747474;
+  --sidebar: #f5f8fb;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ebebeb;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #ebebeb;
+  --sidebar-ring: #000000;
+  --shadow-x: 0px;
+  --shadow-y: 2px;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.2;
+  --shadow-color: #000000;
+}
+
+.dark {
+  --background: #1a1b1e;
+  --foreground: #f0f0f0;
+  --card: #222327;
+  --card-foreground: #f0f0f0;
+  --popover: #222327;
+  --popover-foreground: #f0f0f0;
+  --primary: #8c5cff;
+  --primary-foreground: #ffffff;
+  --secondary: #2a2c33;
+  --secondary-foreground: #f0f0f0;
+  --muted: #2a2c33;
+  --muted-foreground: #a0a0a0;
+  --accent: #1e293b;
+  --accent-foreground: #79c0ff;
+  --destructive: #f87171;
+  --destructive-foreground: #ffffff;
+  --border: #33353a;
+  --input: #33353a;
+  --ring: #8c5cff;
+  --sidebar: #161618;
+  --sidebar-foreground: #f0f0f0;
+  --sidebar-primary: #8c5cff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2a2c33;
+  --sidebar-accent-foreground: #8c5cff;
+  --sidebar-border: #33353a;
+  --sidebar-ring: #8c5cff;
+  --chart-1: #4ade80;
+  --chart-2: #8c5cff;
+  --chart-3: #fca5a5;
+  --chart-4: #5993f4;
+  --chart-5: #a0a0a0;
+  --shadow-x: 0px;
+  --shadow-y: 2px;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.2;
+  --shadow-color: #000000;
+}
+
+@theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --font-sans: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback';
+  --font-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback';
+  --font-display: "Tanker", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-serif: 'Lora', 'Lora Fallback';
+  /* computed shadow variables below - do not modify */
+  --shadow-2xs: var(--shadow-x) var(--shadow-y) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-xs: var(--shadow-x) var(--shadow-y) var(--shadow-blur) var(--shadow-spread) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-sm: var(--shadow-x) var(--shadow-y) calc(var(--shadow-blur) * 1.5) var(--shadow-spread) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-md: calc(var(--shadow-x) * 2) calc(var(--shadow-y) * 2) calc(var(--shadow-blur) * 3) calc(var(--shadow-spread) - 1px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-lg: calc(var(--shadow-x) * 4) calc(var(--shadow-y) * 4) calc(var(--shadow-blur) * 5) calc(var(--shadow-spread) - 3px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-xl: calc(var(--shadow-x) * 6) calc(var(--shadow-y) * 6) calc(var(--shadow-blur) * 7) calc(var(--shadow-spread) - 5px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-2xl: calc(var(--shadow-x) * 8) calc(var(--shadow-y) * 8) calc(max(0px, var(--shadow-blur) * 9 - 8px)) calc(var(--shadow-spread) - 12px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 250%), transparent);
+  --shadow: var(--shadow-md);
+  --color-shadow-color: var(--shadow-color);
+  --shadow-opacity: var(--shadow-opacity);
+  --shadow-spread: var(--shadow-spread);
+  --shadow-blur: var(--shadow-blur);
+  --shadow-y: var(--shadow-y);
+  --shadow-x: var(--shadow-x);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply text-foreground;
+    background: transparent;
+  }
+}
+
+/* Glassmorphism with transparent backgrounds */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Neon cyan glow effects matching video */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.2);
+}
+
+.glow-cyan-intense {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.6), 0 0 60px rgba(34, 211, 238, 0.4), 0 0 100px rgba(34, 211, 238, 0.3),
+    inset 0 0 30px rgba(34, 211, 238, 0.1);
+}
+
+/* Purple glow matching video background */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.4), 0 0 40px rgba(167, 139, 250, 0.2);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2);
+}
+
+/* Text glow effects for Tanker font */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8), 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.8), 0 0 20px rgba(167, 139, 250, 0.5);
+}
+
+/* Icon floating effect with drop shadow */
+.icon-float {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 8px rgba(167, 139, 250, 0.3));
+}
+
+/* Mining active pulse animation */
+.mining-active {
+  animation: mining-pulse 2s ease-in-out infinite;
+}
+
+@keyframes mining-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.8);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
+  }
+}
+
+/* Float animation for icons */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Slow pulse animation */
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Radial progress animation for claim button */
+@keyframes radial-progress {
+  from {
+    stroke-dashoffset: 283;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.radial-progress-animate {
+  animation: radial-progress 3600s linear infinite;
+}
+
+/* Claim button glow pulse */
+@keyframes claim-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.6), 0 0 60px rgba(34, 211, 238, 0.4), 0 0 100px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.8), 0 0 80px rgba(34, 211, 238, 0.5), 0 0 120px rgba(34, 211, 238, 0.3);
+  }
+}
+
+.claim-button-glow {
+  animation: claim-glow 2s ease-in-out infinite;
+}
+
+/* Text colors */
+.text-gold {
+  color: var(--gold);
+}
+.text-silver {
+  color: var(--silver);
+}
+.text-bronze {
+  color: var(--bronze);
+}
+.text-cyan {
+  color: var(--cyan-glow);
+}
+.text-purple-glow {
+  color: var(--purple-glow);
+}
+
+/* Background colors */
+.bg-gold\/20 {
+  background-color: rgba(251, 191, 36, 0.2);
+}
+.bg-silver\/20 {
+  background-color: rgba(148, 163, 184, 0.2);
+}
+.bg-bronze\/20 {
+  background-color: rgba(217, 119, 6, 0.2);
+}
+.bg-cyan\/20 {
+  background-color: rgba(34, 211, 238, 0.2);
+}
+.bg-purple\/20 {
+  background-color: rgba(167, 139, 250, 0.2);
+}
+
+/* Border colors */
+.border-gold\/30 {
+  border-color: rgba(251, 191, 36, 0.3);
+}
+.border-cyan\/30 {
+  border-color: rgba(34, 211, 238, 0.3);
+}
+.border-purple\/30 {
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+/* Safe area padding for mobile */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+/* Hide scrollbar but allow scrolling */
+body {
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transparent card backgrounds */
+.card-transparent {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Button glass style */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
